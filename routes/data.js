@@ -25,11 +25,11 @@ function readFile(path,filesList)
    function walk(file)
    {  
         states = fs.statSync(path+'/'+file);         
-        if(states.isDirectory())
-        {
-            readFile(path+'/'+file,filesList);
-        }
-        else
+        if(states.isFile())
+        // {
+        //     readFile(path+'/'+file,filesList);
+        // }
+        // else
         {   
             //创建一个对象保存信息
             var obj = new Object();
