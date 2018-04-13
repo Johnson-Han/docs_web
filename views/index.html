@@ -360,7 +360,7 @@
                                     <i class="fa fa-stack-overflow fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">29</div>
+                                    <div class="huge">{{total_sub}}/{{total_num}}</div>
                                     <div>初步设计文件</div>
                                 </div>
                             </div>
@@ -902,7 +902,8 @@
           count=[];
           submmitted=[];
           authorized=[];
-          sum=0;
+          file_sum=0;
+          file_sub=0;
           response.forEach(function(key){
       
            systems[i]=key.systems;
@@ -910,16 +911,18 @@
            submmitted[i]=key.submmitted;
            authorized[i]=key.authorized;
            i++;
-           sum=sum+parseInt(key.count);
+           file_sum=file_sum+parseInt(key.count);
+           file_sub=file_sub+parseInt(key.submmitted);
+           
           });
           $scope.systems = systems;
           $scope.authorized=authorized;
           $scope.submmitted=submmitted;
           $scope.count=count;
-          
-         
+          $scope.total_num=file_sum;
+          $scope.total_sub=file_sub;
 
-          $scope.total_num=sum;
+
           
 
           // console.log("when");
