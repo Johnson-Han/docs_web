@@ -495,7 +495,7 @@
                                             <tbody>
                                                 <tr ng-repeat="x in input_file">
                                                     <td>{{$index}}</td>
-                                                    <td>{{x.name}}</td>
+                                                    <td><a href={{x.path}}>{{x.name}}</a></td>
                                                     <td class="filesize">{{x.size}}&nbspMB</td>
                                                     <td class="date">{{x.time}}</td>
                                                 </tr>
