@@ -36,6 +36,7 @@ function readFile(path,filesList)
             obj.size = states.size;//文件大小，以字节为单位
             obj.name = file;//文件名
             obj.path = path+'/'+file; //文件绝对路径
+            obj.time = states.mtime;
             filesList.push(obj);
         }     
     }
