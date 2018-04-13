@@ -858,7 +858,7 @@
       var myUrl_input = "http://10.10.2.29:3000/data/input_file?callback=JSON_CALLBACK";
       $http.jsonp(myUrl_input).success(function(response){
         $scope.input_file=response;
-        console.log(response);
+        // console.log(response);
 
       });
       $http.jsonp(myUrl).success(function(response) {
