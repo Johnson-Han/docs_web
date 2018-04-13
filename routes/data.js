@@ -63,11 +63,7 @@ router.get('/input_file', function(req, res, next) {
     // console.log(files);
     filelist=getFileList("./public/files/TMSR-LF1工程/初步设计/01.设计输入参数");
     res.jsonp(filelist);
-  })
-  
-
-
-});
+  });
 
 
 
