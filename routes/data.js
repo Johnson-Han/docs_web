@@ -23,7 +23,8 @@ router.get('/lf1', function(req, res, next) {
 
 router.get('/input_file', function(req, res, next) {
   fs.readdir("./public/files/TMSR-LF1工程/初步设计/01.设计输入参数",function(err,files){
-    console.log(files);
+    // console.log(files);
+    res.jsonp(files);
   })
   
 
