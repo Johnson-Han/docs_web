@@ -911,8 +911,8 @@
            submmitted[i]=key.submmitted;
            authorized[i]=key.authorized;
            i++;
-           file_sum=file_sum+parseInt(key.count);
-           file_sub=file_sub+parseInt(key.submmitted);
+           file_sum=file_sum+parseInt(key.count?key.count:0);
+           file_sub=file_sub+parseInt(key.submmitted?key.submmitted:0);
            
           });
           $scope.systems = systems;
