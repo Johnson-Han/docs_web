@@ -868,11 +868,11 @@
       $http.jsonp(myUrl_input).success(function(response){
         // $scope.input_file=response;
         var data = new Array();
-
-        response.forEach(function(){
+        var i=0;
+        response.forEach(function(responseE){
         console.log(response);
             
-        data.push([response.name, response.size, response.time, response.path]);
+        data.push(i,[responseE.name, responseE.size, responseE.time, responseE.path]);
         })
         $(document).ready(function () {
               $('#example').DataTable({
