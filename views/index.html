@@ -872,13 +872,15 @@
         response.forEach(function(responseE){
         console.log(response);
             
-        data.push([i,responseE.name, responseE.size, responseE.time, responseE.path]);
+        data.push([responseE.name, responseE.size, responseE.time, responseE.path]);
+        i++;
         })
         $(document).ready(function () {
               $('#example').DataTable({
+                  
                   // "paging":   false,
                   // "ordering": false,
-                  "info": false,
+                  "info": true,
                   "language": {
                       "lengthMenu": "每页 _MENU_ 条记录",
                       "zeroRecords": "没有找到记录",
@@ -903,9 +905,9 @@
                           // this case `data: 0`.
                           "render": function (data, type, row) {
                               // return data +' ('+ row[3]+')';
-                              return '<a href="' + row[4] + '">' + data + '</a>';
+                              return '<a href="' + row[3] + '">' + data + '</a>';
                           },
-                          "targets": 0
+                          "targets": 1
                       },
                       { "visible": false, "targets": [4] }
                   ]
