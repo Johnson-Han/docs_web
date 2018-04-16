@@ -3,10 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'TMSR-Docs 核能文档管理系统' });
+  res.render('index', { title: 'TMSR-Documents 核能文档管理系统' });
 });
-router.get('/tables.html', function(req, res, next) {
-  res.render('tables', { title: 'TMSR-Docs 文档列表' });
+router.get('/lf1_note', function(req, res, next) {
+  res.render('lf1_note', { title: 'TMSR-Documents  LF1技术联系单' });
 });
 
 module.exports = router;
