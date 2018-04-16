@@ -867,11 +867,12 @@
       var myUrl_input = "http://10.10.2.29:3000/data/input_file?callback=JSON_CALLBACK";
       $http.jsonp(myUrl_input).success(function(response){
         // $scope.input_file=response;
-        // console.log(response);
         var i=0;
         var data = new Array();
-        response.forEach(function(response){
 
+        response.forEach(function(response){
+        console.log(response);
+            
         data.push([response[i].name, response[i].size, response[i].time, response[i].path]);
         })
         $(document).ready(function () {
