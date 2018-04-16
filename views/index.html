@@ -233,92 +233,45 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>LF1 文件管理</a>
+                            <a href="/"><i class="fa fa-dashboard fa-fw"></i>LF1 文件管理</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <a href="forms.html">
+                                <i class="fa fa-edit fa-fw"></i>工作联系单</a>
+                        </li>
+                        <li>
+                            <a href="forms.html">
+                                <i class="fa fa-edit fa-fw"></i>技术通知单</a>
+                        </li>
+                        <li>
+                            <a href="/lf1_proto_design"><i class="fa fa-bar-chart-o fa-fw"></i>概念设计文件<span class="fa arrow"></span></a>
+                   
+                            <!-- /.nav-second-level -->
+                        </li>
+
+
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i>初步设计文件<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                <li ng-repeat="x in systems">
+                                        <a href={{x}}>{{x}}</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                            <a href="#">
+                                <i class="fa fa-wrench fa-fw"></i>施工图设计文件
+                                <span class="fa arrow"></span>
+                            </a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
+                                <li ng-repeat="x in systems">
+                                    <a href={{x}}>{{x}}</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -437,17 +390,8 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                            <li><a href="#">总体性文件</a></li>    
-                                            <li><a href="#">事故分析</a></li>    
-                                            <li><a href="#">堆物理</a></li>    
-                                            <li class="divider"></li>
-                                        <li><a href="#">堆本体系统</a></li>
-                                        <li><a href="#">堆回路系统</a></li>
-                                        <li><a href="#">堆仪控系统</a></li>
-                                        <li><a href="#">热工水利系统</a></li>
-                                        <li><a href="#">气路和氚系统</a></li>
-                                        <li><a href="#">材料工艺系统</a></li>
-                                        <li><a href="#">运行维护系统</a></li>
+                                            <li ng-repeat="x in systems"><a href={{/x}}>{{x}}</a></li>    
+
                                     </ul>
                                 </div>
                             </div>
