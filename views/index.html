@@ -872,7 +872,7 @@
         response.forEach(function(responseE){
         console.log(response);
             
-        data.push(i,[responseE.name, responseE.size, responseE.time, responseE.path]);
+        data.push([i,responseE.name, responseE.size, responseE.time, responseE.path]);
         })
         $(document).ready(function () {
               $('#example').DataTable({
@@ -903,11 +903,11 @@
                           // this case `data: 0`.
                           "render": function (data, type, row) {
                               // return data +' ('+ row[3]+')';
-                              return '<a href="' + row[3] + '">' + data + '</a>';
+                              return '<a href="' + row[4] + '">' + data + '</a>';
                           },
                           "targets": 0
                       },
-                      { "visible": false, "targets": [3] }
+                      { "visible": false, "targets": [4] }
                   ]
 
               });
