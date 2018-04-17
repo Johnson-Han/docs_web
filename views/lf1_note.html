@@ -38,7 +38,7 @@
 
 </head>
 
-<body>
+<body ng-app="myApp" ng-controller="myCtrl">
 
     <div id="wrapper">
 
@@ -761,14 +761,64 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
-
+    <script src="js/angular.min.js"></script>   
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
+        var app = angular.module('myApp', []);
+            app.controller('myCtrl', function ($scope, $http) {
+                 var myUrl = "http://10.10.2.29:3000/data/lf1_note?callback=JSON_CALLBACK";
+                 $http.jsonp(myUrl).success(function (response) {
+                     var data = new Array();
+                     var i = 0;
+                     response.forEach(function (responseE) {
+                         // console.log(response);
+
+                         data.push([i, responseE.name, responseE.size, responseE.time, responseE.path]);
+                         i++;
+                     })
+                     $(document).ready(function () {
+                         $('#dataTables-example').DataTable({
+
+                             // "paging":   false,
+                             // "ordering": false,
+                             "info": true,
+                             "language": {
+                                 "lengthMenu": "每页 _MENU_ 条记录",
+                                 "zeroRecords": "没有找到记录",
+                                 "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                                 "infoEmpty": "无记录",
+                                 "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                                 "search": "检索",
+
+                                 "paginate": {
+                                     "first": "第一页",
+                                     "previous": "上一页",
+                                     "next": "下一页",
+                                     "last": "最后一页"
+                                 }
+                             },
+
+                             "data": data,
+                             "columnDefs": [
+                                 {
+                                     // The `data` parameter refers to the data for the cell (defined by the
+                                     // `data` option, which defaults to the column being worked with, in
+                                     // this case `data: 0`.
+                                     "render": function (data, type, row) {
+                                         // return data +' ('+ row[3]+')';
+                                         return '<a href="' + row[4] + '">' + data + '</a>';
+                                     },
+                                     "targets": 1
+                                 },
+                                 { "visible": false, "targets": [4] }
+                             ]
+
+                         });
+                     }); 
+
+                 });
+
         });
-    });
     </script>
 
 </body>

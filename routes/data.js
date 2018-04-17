@@ -37,7 +37,7 @@ function readFile(path,filesList)
             obj.name = file.slice(10,-4);//文件名
             obj.path = (path+'/'+file).slice(8); //文件绝对路径
             obj.mtime = states.mtime;
-            obj.time = file.slice(1, 10);
+            obj.time = file.slice(1, 9);
             
             filesList.push(obj);
         }     
@@ -68,6 +68,12 @@ router.get('/input_file', function(req, res, next) {
     res.jsonp(filelist);
   });
 
+router.get('/lf1_note', function (req, res, next) {
+  // fs.readdir("./public/files/TMSR-LF1工程/初步设计/01.设计输入参数",function(err,files){
+  // console.log(files);
+  filelist = getFileList("./public/files/TMSR-LF1工程/接口文件/技术通知单");
+  res.jsonp(filelist);
+});
 
 
 module.exports = router;
