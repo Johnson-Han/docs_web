@@ -74,6 +74,7 @@ router.get('/lf1_note', function (req, res, next) {
   filelist = getFileList("./public/files/TMSR-LF1工程/接口文件/技术通知单");
   res.jsonp(filelist);
 });
+
 router.get('/lf1_contact_name', function (req, res, next) {
   // fs.readdir("./public/files/TMSR-LF1工程/初步设计/01.设计输入参数",function(err,files){
   // console.log(files);
@@ -87,4 +88,5 @@ router.get('/lf1_contact_name', function (req, res, next) {
 
 });
 
+});
 module.exports = router;
