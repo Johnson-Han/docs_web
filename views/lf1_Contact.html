@@ -314,7 +314,8 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>主题名称(subject)</th>
+                                        <th>序号(Index)</th>
+                                        <th>主题名称(Subject)</th>
                                         <th>发之(From)</th>
                                         <th>发往(To)</th>
                                     </tr>
@@ -324,8 +325,8 @@
                             <!-- /.table-responsive -->
                             <div class="well">
                                 <h4>工作联系单</h4>
-                                <p>项目自初步设计批准之日起至通过竣工验收正式交付使用之日止，对已批准的初步设计文件、技术设计文件或施工图设计文件所进行的修改、完善、优化等活动,应以图纸或设计变更通知单的形式发出。</p>
-                                <a class="btn btn-default btn-lg btn-block" target="_blank" href="/">上传新的技术通知单</a>
+                                <p>工作联系单是不相隶属系统之间相互商洽工作、询问和答复问题，或者向有关主管部门请求批准事项时所使用的公文。 </p>
+                                <a class="btn btn-default btn-lg btn-block" target="_blank" href="/">发起新的联系单</a>
                             </div>
                         </div>
                         <!-- /.panel-body -->
@@ -372,7 +373,7 @@
                      response.forEach(function (responseE) {
                          // console.log(response);
 
-                         data.push([i, responseE.name, responseE.size, responseE.time, responseE.path]);
+                         data.push([i, responseE.name, responseE.contact_from, responseE.contact_to]);
                          i++;
                      })
                      $(document).ready(function () {
