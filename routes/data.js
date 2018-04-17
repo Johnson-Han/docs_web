@@ -79,7 +79,7 @@ router.get('/lf1_contact', function (req, res, next) {
   // console.log(files);
   filelist = getFileList("./public/files/TMSR-LF1工程/接口文件/工作联系单");
   res.jsonp(filelist);
-  console.log(files);
+  console.log(path);
   
 });
 
