@@ -5,6 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'TMSR-Documents 核能文档管理系统' });
 });
+
 router.get('/lf1_note', function(req, res, next) {
   res.render('lf1_note', { title: 'TMSR-Documents  LF1技术联系单' });
 });
