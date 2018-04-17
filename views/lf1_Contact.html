@@ -314,18 +314,16 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>单号(index)</th>
-                                        <th>联系单主题(subject)</th>
+                                        <th>主题名称(subject)</th>
                                         <th>发之(From)</th>
                                         <th>发往(To)</th>
-                                        <th>签署日期(date)</th>
                                     </tr>
                                 </thead>
 
                             </table>
                             <!-- /.table-responsive -->
                             <div class="well">
-                                <h4>信息描述</h4>
+                                <h4>工作联系单</h4>
                                 <p>项目自初步设计批准之日起至通过竣工验收正式交付使用之日止，对已批准的初步设计文件、技术设计文件或施工图设计文件所进行的修改、完善、优化等活动,应以图纸或设计变更通知单的形式发出。</p>
                                 <a class="btn btn-default btn-lg btn-block" target="_blank" href="/">上传新的技术通知单</a>
                             </div>
@@ -365,7 +363,7 @@
     <script>
         var app = angular.module('myApp', []);
             app.controller('myCtrl', function ($scope, $http) {
-                 var myUrl_note = "http://10.10.2.29:3000/data/lf1_note?callback=JSON_CALLBACK";
+                 var myUrl_note = "http://10.10.2.29:3000/data/lf1_contact_name?callback=JSON_CALLBACK";
                  var myUrl = "http://10.10.2.29:3000/data/lf1?callback=JSON_CALLBACK";
 
                  $http.jsonp(myUrl_note).success(function (response) {
@@ -407,11 +405,11 @@
                                      // this case `data: 0`.
                                      "render": function (data, type, row) {
                                          // return data +' ('+ row[3]+')';
-                                         return '<a href="' + row[4] + '">' + data + '</a>';
+                                         return '<a>' + data + '</a>';
                                      },
                                      "targets": 1
-                                 },
-                                 { "visible": false, "targets": [4] }
+                                 }
+                                //  { "visible": false, "targets": [4] }
                              ]
 
                          });

@@ -74,13 +74,17 @@ router.get('/lf1_note', function (req, res, next) {
   filelist = getFileList("./public/files/TMSR-LF1工程/接口文件/技术通知单");
   res.jsonp(filelist);
 });
-router.get('/lf1_contact', function (req, res, next) {
+router.get('/lf1_contact_name', function (req, res, next) {
   // fs.readdir("./public/files/TMSR-LF1工程/初步设计/01.设计输入参数",function(err,files){
   // console.log(files);
-  filelist = getFileList("./public/files/TMSR-LF1工程/接口文件/工作联系单");
-  res.jsonp(filelist);
-  console.log(filelist);
-  
+  // filelist = getFileList("./public/files/TMSR-LF1工程/接口文件/工作联系单");
+  // res.jsonp(filelist);
+  // console.log(filelist);
+  sql="select name, string_agg(distinct(\"contact_from\"), \',\') as \"contact_from\", string_agg(distinct(\"contact_to\"), \',\') as \"contact_to\" from  param_requirement group by name;"
+  process.env.TZ = "Asia/Shanghai";
+  pg1.query(sql, function (result) {
+  res.jsonp(result.rows);
+
 });
 
 module.exports = router;
