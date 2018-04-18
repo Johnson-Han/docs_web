@@ -18,14 +18,14 @@ function getFileList(path)
 }
 
 //遍历读取文件
-function readFile(path,filesList)
+function readFile_reply(path,filesList)
 {
    files = fs.readdirSync(path);//需要用到同步读取
    files.forEach(walk);
    function walk(file)
    {  
         states = fs.statSync(path+'/'+file);         
-        if(states.isFile())
+        if(states.isFile() && file.slice(0,2) != "回复")
         // {
         //     readFile(path+'/'+file,filesList);
         // }
@@ -43,7 +43,29 @@ function readFile(path,filesList)
         }     
     }
 }
+function readFile(path, filesList) {
+  files = fs.readdirSync(path);//需要用到同步读取
+  files.forEach(walk);
+  function walk(file) {
+    states = fs.statSync(path + '/' + file);
+    if (states.isFile() && file.slice(0, 2) == "回复")
+    // {
+    //     readFile(path+'/'+file,filesList);
+    // }
+    // else
+    {
+      //创建一个对象保存信息
+      var obj = new Object();
+      obj.size = (states.size / 1024 / 1024).toFixed(1);//文件大小，以字节为单位
+      obj.name = file.slice(10, -4);//文件名
+      obj.path = (path + '/' + file).slice(8); //文件绝对路径
+      obj.mtime = states.mtime;
+      obj.time = file.slice(3, 11);
 
+      filesList.push(obj);
+    }
+  }
+}
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -89,6 +111,13 @@ router.get('/lf1_contact_name', function (req, res, next) {
   });
 
 
+});
+
+router.get('/lf1_reply', function (req, res, next) {
+  // fs.readdir("./public/files/TMSR-LF1工程/初步设计/01.设计输入参数",function(err,files){
+  // console.log(files);
+  filelist = getFile_reply("./public/files/TMSR-LF1工程/接口文件/工作联系单");
+  res.jsonp(filelist);
 });
 
 
