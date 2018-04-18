@@ -10,7 +10,8 @@ router.get('/:post_name', function (req, res, next) {
   // console.log(req.params)
   res.render('page_lf_contact', { title: req.params.post_name });
 })
-router.get('/add_new', function (req, res, next) {
+
+router.get('/add/add_new', function (req, res, next) {
   // console.log(req.params)
   res.render('lfnewcontact');
 })

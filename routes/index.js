@@ -10,6 +10,10 @@ router.get('/lf1_note', function(req, res, next) {
   res.render('lfnote', { title: 'TMSR-Documents  LF1技术联系单' });
 });
 
+router.get('/add_new_contact', function (req, res, next) {
+  // console.log(req.params)
+  res.render('lfnewcontact');
+})
 
 
 module.exports = router;
