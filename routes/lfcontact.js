@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var pg1 = require('./pgconn');
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('lfcontact', { title: "TMSR-Documents LF1工作联系单" });
@@ -12,14 +12,9 @@ router.get('/:post_name', function (req, res, next) {
   console.log(sql);
   pg1.query(sql, function (result) {
 
-    // console.log(result.rows[0].title);
-    // console.log(result.rows[0].author);
-    // console.log(result.rows[0].date);
-    // console.log(result.rows[0].body);
-    console.log(result);
+    console.log(result.rows);
     //res.render('page_contact', { title: req.params.post_name });
-    // console.log(result.rows[1]); 
-
+    res.jsonp(result.rows);
   });
 
 })
