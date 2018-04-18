@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/lf1_note', function(req, res, next) {
-  res.render('lf1_note', { title: 'TMSR-Documents  LF1技术联系单' });
+  res.render('lfnote', { title: 'TMSR-Documents  LF1技术联系单' });
 });
 
 
