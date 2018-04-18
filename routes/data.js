@@ -17,6 +17,12 @@ function getFileList(path)
    return filesList;
 }
 
+function getFile_reply(path) {
+  var filesList = [];
+  readFile_reply(path, filesList);
+  return filesList;
+}
+
 //遍历读取文件
 function readFile_reply(path,filesList)
 {
@@ -25,7 +31,7 @@ function readFile_reply(path,filesList)
    function walk(file)
    {  
         states = fs.statSync(path+'/'+file);         
-        if(states.isFile() && file.slice(0,2) != "回复")
+        if(states.isFile() && file.slice(0,2) == "回复")
         // {
         //     readFile(path+'/'+file,filesList);
         // }
@@ -48,7 +54,7 @@ function readFile(path, filesList) {
   files.forEach(walk);
   function walk(file) {
     states = fs.statSync(path + '/' + file);
-    if (states.isFile() && file.slice(0, 2) == "回复")
+    if (states.isFile() && file.slice(0, 2) != "回复")
     // {
     //     readFile(path+'/'+file,filesList);
     // }
