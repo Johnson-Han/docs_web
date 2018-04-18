@@ -145,4 +145,23 @@ router.get('/lf_contact_req/:post_name', function (req, res, next) {
 
 
 });
+
+router.get('/lf_contact_reply/:post_name', function (req, res, next) {
+  // fs.readdir("./public/files/TMSR-LF1工程/初步设计/01.设计输入参数",function(err,files){
+  // console.log(files);
+  // filelist = getFileList("./public/files/TMSR-LF1工程/接口文件/工作联系单");
+  // res.jsonp(filelist);
+  // console.log(filelist);
+  sql = 'select * from  param_reply where name= \'' + req.params.post_name + '\';';
+  console.log(sql);
+  pg1.query(sql, function (result) {
+
+    console.log(result.rows);
+
+    res.jsonp(result.rows);
+  });
+
+
+
+});
 module.exports = router;

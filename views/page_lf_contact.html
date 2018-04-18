@@ -339,20 +339,28 @@
 
                                     </div>
                                 </li>
-                                <li class="timeline-inverted">
+                                <li class="timeline-inverted" ng-repeat="x in reply">
                                     <div class="timeline-badge warning">
                                         <i class="fa fa-credit-card"></i>
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">施工图设计</h4>
+                                            <h4 class="timeline-title">{{x.subject}}</h4>
                                             <p>
                                                 <small class="text-muted">
-                                                    <i class="fa fa-clock-o"></i>2018/09</small>
+                                                    <i class="fa fa-clock-o"></i>{{x.reply_date}}</small>
+                                                <br>
+                                                <small class="text-muted">回复:&nbsp{{x.contact_from}} </small>
                                             </p>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>包括堆本体系统、基建和辅助系统、熔盐和核燃料的施工图、研究与验证。全部施工图设计要求9月底完成。</p>
+                                            <p>{{x.note}}</p>
+                                        </div>
+                                        <hr>
+                                        <div class="btn-group">
+                                                <a type="button" class="btn btn-block btn-social btn-dropbox" href="{{x.file_addr}}">
+                                                    <i class="fa fa-paperclip"></i>&nbsp附件
+                                                </a>
                                         </div>
                                     </div>
                                 </li>
@@ -425,6 +433,8 @@
                     $scope.total_sub = file_sub;
                 })
                 
+                
+
                 var title = $(document).attr("title");
                 var myUrl2 = 'http://10.10.2.29:3000/data/lf_contact_req/' + title + '?callback=JSON_CALLBACK'
                 $http.jsonp(myUrl2).success(function (response) {
@@ -452,7 +462,36 @@
                     $scope.request=response;
 
                 });
-            });
+           
+                var myUrl2 = 'http://10.10.2.29:3000/data/lf_contact_reply/' + title + '?callback=JSON_CALLBACK'
+                $http.jsonp(myUrl2).success(function (response) {
+                    // var i = 0;
+                    // subjects = [];
+                    // contact_from =[];
+                    // contact_to =[]
+                    // sign_date =[];
+                    // note=[];
+                    // file_path=[];
+                    // response.forEach(function (key) {
+                    //     subjects[i]=key.subject;
+                    //     contact_from[i]=key.contact_from;
+                    //     contact_to[i]=key.contact_to
+                    //     sign_date[i]=key.resign_dat;
+                    //     note[i]=key.note;
+                    //     file_path[i]=key.file_addr;
+                    // });
+                    // $scope.subject=subjects;
+                    // $scope.contact_from=contact_from;
+                    // $scope.contact_to=contact_to;
+                    // $scope.sign_date=sign_date;
+                    // $scope.file_path=file_path;
+                    // $scope.note=note;
+                    $scope.reply = response;
+
+                });
+                           
+           
+           });
 
     </script>
 
