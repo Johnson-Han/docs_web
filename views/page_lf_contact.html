@@ -419,7 +419,7 @@
                     $scope.total_sub = file_sub;
                 })
                 
-                var title = $(document).attr("title", "");
+                var title = $(document).title;
                 var myUrl2 = 'http://10.10.2.29:3000/data/lf_contact_req/' + title + '?callback=JSON_CALLBACK'
                 $http.jsonp(myUrl2).success(function (response) {
                     // var i = 0;
