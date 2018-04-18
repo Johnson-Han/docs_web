@@ -40,10 +40,10 @@ function readFile_reply(path,filesList)
             //创建一个对象保存信息
             var obj = new Object();
             obj.size = (states.size/1024/1024).toFixed(1);//文件大小，以字节为单位
-            obj.name = file.slice(10,-4);//文件名
+            obj.name = file.slice(12,-4);//文件名
             obj.path = (path+'/'+file).slice(8); //文件绝对路径
             obj.mtime = states.mtime;
-            obj.time = file.slice(1, 9);
+            obj.time = file.slice(3, 11);
             
             filesList.push(obj);
         }     
@@ -66,7 +66,7 @@ function readFile(path, filesList) {
       obj.name = file.slice(10, -4);//文件名
       obj.path = (path + '/' + file).slice(8); //文件绝对路径
       obj.mtime = states.mtime;
-      obj.time = file.slice(3, 11);
+      obj.time = file.slice(1, 9);
 
       filesList.push(obj);
     }
