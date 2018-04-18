@@ -307,7 +307,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i><%= title %>
+                            <i class="fa fa-clock-o fa-fw"></i>联系单进程
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -323,14 +323,20 @@
                                                 <small class="text-muted">
                                                     <i class="fa fa-clock-o"></i>{{x.re_sign_date}}</small>
                                                 <br>
-                                                <small class="text-muted">FROM:&nbsp{{x.contact_from}}</small> 
-                                                <small class="text-muted"></small> TO:&nbsp;{{x.contact_to}} </small>
-
+                                                <small class="text-muted">发起:&nbsp{{x.contact_from}} &nbsp&nbsp&nbsp&nbsp&nbsp 发往:&nbsp;{{x.contact_to}} </small>
+                                                
                                             </p>
                                         </div>
                                         <div class="timeline-body">
                                             <p>{{x.note}}</p>
-                                        </div>
+                                            <hr>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-paperclip"></i><a href="{{x.file_addr}}"></a>
+                                                </button>
+                                            </div>
+                                         </div>
+
                                     </div>
                                 </li>
                                 <li class="timeline-inverted">
