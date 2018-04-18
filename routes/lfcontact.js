@@ -16,8 +16,8 @@ router.get('/:post_name', function (req, res, next) {
     // console.log(result.rows[0].author);
     // console.log(result.rows[0].date);
     // console.log(result.rows[0].body);
-    // // console.log(result.rows[1]);
-    res.render('page_contact', { title: req.params.post_name });
+    console.log(result);
+    //res.render('page_contact', { title: req.params.post_name });
     // console.log(result.rows[1]); 
 
   });
