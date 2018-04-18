@@ -109,7 +109,7 @@ router.get('/lf1_contact_name', function (req, res, next) {
   // filelist = getFileList("./public/files/TMSR-LF1工程/接口文件/工作联系单");
   // res.jsonp(filelist);
   // console.log(filelist);
-  sql="select name, string_agg(distinct(\"contact_from\"), \',\') as \"contact_from\", string_agg(distinct(\"contact_to\"), \',\') as \"contact_to\" from  param_requirement group by name;"
+  sql="select * from doc_contact_reply;"
   process.env.TZ = "Asia/Shanghai";
   pg1.query(sql, function (result) {
   res.jsonp(result.rows);
