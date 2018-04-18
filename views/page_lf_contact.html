@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>TMSR Doc技术联系单:<%= title %></title>
+    <title>TMSR 工作联系单:<%= title %></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -307,25 +307,29 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> TMSR-LF1关键时间节点
+                            <i class="fa fa-clock-o fa-fw"></i><%= title %>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <ul class="timeline">
-                                <li>
+                                <li ng-repeat="x in request">
                                     <div class="timeline-badge success">
                                         <i class="fa fa-search"></i>
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading ">
-                                            <h4 class="timeline-title">初步设计，研究与验证</h4>
+                                            <h4 class="timeline-title">{{x.subject}}</h4>
                                             <p>
                                                 <small class="text-muted">
-                                                    <i class="fa fa-clock-o"></i>2018/05</small>
+                                                    <i class="fa fa-clock-o"></i>{{x.re_sign_date}}</small>
+                                                <br>
+                                                <small class="text-muted">FROM:&nbsp{{x.contact_from}}</small> 
+                                                <small class="text-muted"></small> TO:&nbsp;{{x.contact_to}} </small>
+
                                             </p>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>包括堆本体系统、基建和辅助系统、熔盐和核燃料的可行性研究、初步设计、研究与验证。其中堆本体系统初步设计要求4月底完成，其它系统5月底完成初步设计。</p>
+                                            <p>{{x.note}}</p>
                                         </div>
                                     </div>
                                 </li>
@@ -347,71 +351,7 @@
                                     </div>
                                 </li>
                     
-                                <li>
-                                    <div class="timeline-badge info">
-                                        <i class="fa fa-save"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">设备采购和加工</h4>
-                                            <p>
-                                                <small class="text-muted">
-                                                    <i class="fa fa-clock-o"></i>2019/5</small>
-                                            </p>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>基建和辅助系统完成土建施工，2019/05</p>
-                                            <hr>
-                                            <p>熔盐与核燃料完成设备采购,2019/05</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">设备采购和加工-堆本体</h4>
-                                            <p>
-                                                <small class="text-muted">
-                                                    <i class="fa fa-clock-o"></i>2019/10</small>
-                                            </p>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>堆本体完成设备采购与加工</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge success">
-                                        <i class="fa fa-graduation-cap"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">设备安装</h4>
-                                            <p>
-                                                <small class="text-muted">
-                                                    <i class="fa fa-clock-o"></i>2020/07</small>
-                                            </p>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>堆本体、基建与辅助系统完成设备安装与核前测试，熔盐与核燃料2020年7月底完成基盐制备，核燃料的许可证申请、LiF4到场和燃料盐制备</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge primary">
-                                        <i class="fa fa-flag-checkered"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">首次装料临界并达到2MW</h4>
-                                            <p>
-                                                <small class="text-muted">
-                                                    <i class="fa fa-clock-o"></i>2020/12</small>
-                                            </p>
-                                        </div>
-                    
-                                    </div>
-                                </li>
+
                             </ul>
                         </div>
                         <!-- /.panel-body -->
@@ -482,7 +422,29 @@
                 var title = <%= title %>;
                 var myUrl2 = 'http://10.10.2.29:3000/data/lf_contact_req/' + title + '?callback=JSON_CALLBACK'
                 $http.jsonp(myUrl2).success(function (response) {
-                    var i = 0;
+                    // var i = 0;
+                    // subjects = [];
+                    // contact_from =[];
+                    // contact_to =[]
+                    // sign_date =[];
+                    // note=[];
+                    // file_path=[];
+                    // response.forEach(function (key) {
+                    //     subjects[i]=key.subject;
+                    //     contact_from[i]=key.contact_from;
+                    //     contact_to[i]=key.contact_to
+                    //     sign_date[i]=key.resign_dat;
+                    //     note[i]=key.note;
+                    //     file_path[i]=key.file_addr;
+                    // });
+                    // $scope.subject=subjects;
+                    // $scope.contact_from=contact_from;
+                    // $scope.contact_to=contact_to;
+                    // $scope.sign_date=sign_date;
+                    // $scope.file_path=file_path;
+                    // $scope.note=note;
+                    $scope.request=response;
+
                 });
             });
 
