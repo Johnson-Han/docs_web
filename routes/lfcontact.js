@@ -8,15 +8,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/:post_name', function (req, res, next) {
   // console.log(req.params)
-  sql = 'select * from  param_requirement where name= \'' + req.params.post_name + '\';';
-  console.log(sql);
-  pg1.query(sql, function (result) {
-
-    console.log(result.rows);
-    //res.render('page_contact', { title: req.params.post_name });
-    res.jsonp(result.rows);
-  });
-
+  res.render('page_lf_contact', { title: req.params.post_name });
 })
 
 
