@@ -15,8 +15,8 @@ router.get('/add_new_contact', function (req, res, next) {
   res.render('lfnewcontact');
 })
 
-
-router.post('/lf_note_add',function(req,res,next){
+var upload = multer({ dest: '/files' })
+router.post('/lf_note_add', upload.single('file'),function(req,res,next){
   console.log(req.body);
 
    Wurl='/lfcontact/'+req.body.name;
