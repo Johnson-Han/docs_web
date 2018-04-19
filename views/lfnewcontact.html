@@ -312,11 +312,11 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" method="post",enctype="multipart/form-data" action="/lf_note_add">
                                         <div class="form-group">
                                             <label>联系单主题</label>
                                             <input class="form-control">
-                                            <p class="help-block">工程联系单以主体名分类，可创建新的主题，也可补充已有主题</p>
+                                            <p class="help-block">以主题名分类，可创建新的主题，也可补充已有主题</p>
                                         </div>
                                         <div class="form-group">
                                             <label>发起部门</label>
@@ -332,16 +332,7 @@
                                             <textarea class="form-control" rows="3"></textarea>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label>Selects</label>
-                                            <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
+
 
                                         <button type="submit" class="btn btn-default">Submit Button</button>
 
