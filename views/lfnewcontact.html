@@ -35,6 +35,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="js/angular.min.js"></script>
 
 </head>
 
@@ -312,10 +313,10 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" method="post" action="/lf_note_add" novalidate="novalidate">
+                                    <form role="form" method="post" action="/lf_note_add" novalidate>
                                         <div class="form-group">
                                             <label>联系单主题</label>
-                                            <input class="form-control" required  name="name"  id="name"  data-validation-required-message="主题名称">
+                                            <input class="form-control" required  name="name"  id="name"  required="required" data-validation-required-message="主题名称">
                                             <p class="help-block">以主题名分类，可创建新的主题，也可补充已有主题</p>
                                         </div>
                                         <div class="form-group">
@@ -329,7 +330,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>备注</label>
-                                            <textarea class="form-control" rows="3" required="required" name="note" id="note" data-validation-required-message="工程联系单内容简介"></textarea>
+                                            <textarea class="form-control" rows="3"  name="note" id="note" data-validation-required-message="工程联系单内容简介"></textarea>
                                         </div>
 
 
@@ -372,7 +373,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
-    <script src="js/angular.min.js"></script>   
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
         var app = angular.module('myApp', []);
