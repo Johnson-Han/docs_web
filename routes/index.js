@@ -28,7 +28,9 @@ router.get('/add_new_subject/:contact_name', function (req, res, next) {
 
 router.get('/add_reply/:contact_name', function (req, res, next) {
   // console.log(req.params)
-  res.render('lfcontactreply', { title: req.params.contact_name });
+  res.render('lfcontactreply', { title: req.params.contact_name }, function (err, html) {
+    console.log(err);
+  });
 })
 
 
