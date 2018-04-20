@@ -299,7 +299,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">LF1 添加工程联系单</h1>
+                    <h1 class="page-header">补充工程联系单主题</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -313,11 +313,12 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form action="/lf_contact_add" method="post" enctype="multipart/form-data">
+                                    <form action="/lf_subject_add" method="post" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label>主题名</label>
-                                            <input class="form-control" required  name="name"  id="name"  required data-validation-required-message="主题名称">
-                                            <p class="help-block">以主题名分类，可创建新的主题，也可补充已有主题</p>
+                                            <label>主题名称</label>
+                                            <p  style="display:none" name="name" id="name" ><%= title %></p>
+                                            
+                                            <input class="form-control"  placeholder="补充内容名称" required  name="subject"  id="subject"  required data-validation-required-message="补充内容名称">
                                         </div>
                                         <div class="form-group">
                                             <label>发起</label>
