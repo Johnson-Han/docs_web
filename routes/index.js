@@ -108,7 +108,7 @@ router.post('/lf_reply_add', multer({ storage: storage1 }).single('file'), funct
   newDate.setTime(upfdate);
   var filepath = "/files/lf1/工作联系单/" + req.file.filename;
   var upftime = newDate.toISOString();
-  sql = 'insert into param_reply (subject,reply_from,file_addr,name,re_sign_date,filename,note) values (\'' + req.body.subject + '\',\'' + req.body.reply_from + '\',\'' + filepath + '\',\'' + req.body.name + '\',\'' + upftime + '\',\'' + req.file.filename + '\',\'' + req.body.note + '\')';
+  sql = 'insert into param_reply (subject,reply_from,file_addr,name,reply_date,filename,note) values (\'' + req.body.subject + '\',\'' + req.body.reply_from + '\',\'' + filepath + '\',\'' + req.body.name + '\',\'' + upftime + '\',\'' + req.file.filename + '\',\'' + req.body.note + '\')';
 
 
   console.log(sql);
