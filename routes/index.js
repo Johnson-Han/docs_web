@@ -24,14 +24,9 @@ router.get('/add_new_subject/:contact_name', function (req, res, next) {
   res.render('lfnewsubject', {title: req.params.contact_name});
 })
 
-//按钮回复联系单的路由
 
-router.get('/add_reply/:contact_name', function (req, res, next) {
-  // console.log(req.params)
-  res.render('lfcontactreply', { title: req.params.contact_name }, function (err, html) {
-    console.log(err);
-  });
-})
+
+
 
 
 //工作联系单的保存路径
