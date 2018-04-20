@@ -56,8 +56,8 @@ router.post('/lf_contcat_add', multer({storage : storage1}).single('file'),funct
     var newDate = new Date();
     newDate.setTime(upfdate);
     var filepath ="/files/lf1/工作联系单/"+req.file.filename;
-     var upftime=newDate.toISOString();
-     sql='insert into param_requirement (subject,contact_from,contact_to,file_addr,name,re_sign_date,filename,note) values (\''+req.body.name+'\',\''+req.body.contact_from+'\',\''+req.body.contact_to+'\',\''+filepath+'\',\''+req.body.name+'\',\''+upftime+'\',\''+req.file.filename+'\',\''+req.body.note+'\')';
+    var upftime = newDate.toLocaleString();
+    sql='insert into param_requirement (subject,contact_from,contact_to,file_addr,name,re_sign_date,filename,note) values (\''+req.body.name+'\',\''+req.body.contact_from+'\',\''+req.body.contact_to+'\',\''+filepath+'\',\''+req.body.name+'\',\''+upftime+'\',\''+req.file.filename+'\',\''+req.body.note+'\')';
 
 
     console.log(sql);
@@ -106,4 +106,5 @@ router.post('/lf_reply_add', multer({ storage: storage1 }).single('file'), funct
   res.redirect(Wurl);
 
 })
+
 module.exports = router;
