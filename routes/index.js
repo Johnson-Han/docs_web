@@ -60,6 +60,7 @@ router.post('/lf_contact_add', multer({storage : storage1}).single('file'),funct
     var filepath ="/files/lf1/工作联系单/"+req.file.filename;
     
     var upftime = newDate.toISOString();
+    
     sql='insert into param_requirement (subject,contact_from,contact_to,file_addr,name,re_sign_date,filename,note) values (\''+req.body.name+'\',\''+req.body.contact_from+'\',\''+req.body.contact_to+'\',\''+filepath+'\',\''+req.body.name+'\',\''+upftime+'\',\''+req.file.filename+'\',\''+req.body.note+'\')';
 
 
@@ -77,10 +78,13 @@ router.post('/lf_subject_add', multer({ storage: storage1 }).single('file'), fun
   // console.log(process.cwd());
   var upfdate = Date.now();
   var newDate = new Date();
-  newDate.setTime(upfdate);
+  var localOffset = newDate.getTimezoneOffset() * 60000;
+
+  newDate.setTime(upfdate + localOffset);
   var filepath = "/files/lf1/工作联系单/" + req.file.filename;
+
   var upftime = newDate.toISOString();
-  sql = 'insert into param_requirement (subject,contact_from,contact_to,file_addr,name,re_sign_date,filename,note) values (\'' + req.body.name + '\',\'' + req.body.contact_from + '\',\'' + req.body.contact_to + '\',\'' + filepath + '\',\'' + req.body.subject + '\',\'' + upftime + '\',\'' + req.file.filename + '\',\'' + req.body.note + '\')';
+  sql = 'insert into param_requirement (subject,contact_from,contact_to,file_addr,name,re_sign_date,filename,note) values (\'' + req.body.subject + '\',\'' + req.body.contact_from + '\',\'' + req.body.contact_to + '\',\'' + filepath + '\',\'' + req.body.name + '\',\'' + upftime + '\',\'' + req.file.filename + '\',\'' + req.body.note + '\')';
 
 
   console.log(sql);
@@ -100,7 +104,7 @@ router.post('/lf_reply_add', multer({ storage: storage1 }).single('file'), funct
   newDate.setTime(upfdate);
   var filepath = "/files/lf1/工作联系单/" + req.file.filename;
   var upftime = newDate.toISOString();
-  sql = 'insert into param_reply (subject,reply_from,file_addr,name,re_sign_date,filename,note) values (\'' + req.body.name + '\',\'' + req.body.reply_from + '\',\'' + filepath + '\',\'' + req.body.subject + '\',\'' + upftime + '\',\'' + req.file.filename + '\',\'' + req.body.note + '\')';
+  sql = 'insert into param_reply (subject,reply_from,file_addr,name,re_sign_date,filename,note) values (\'' + req.body.subject + '\',\'' + req.body.reply_from + '\',\'' + filepath + '\',\'' + req.body.name + '\',\'' + upftime + '\',\'' + req.file.filename + '\',\'' + req.body.note + '\')';
 
 
   console.log(sql);
