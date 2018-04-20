@@ -26,7 +26,7 @@ router.get('/add_new_subject/:contact_name', function (req, res, next) {
 
 //按钮回复联系单的路由
 
-router.get('/add_reply/:contact_name', function (req, res, next) {
+router.get('/lf_contact_reply/:contact_name', function (req, res, next) {
   // console.log(req.params)
   res.render('lfcontactreply', { title: req.params.contact_name });
 })
