@@ -9,3 +9,4 @@ router.get('/add_reply/:contact_name', function (req, res, next) {
         console.log(err);
     });
 })
+module.exports = router;
