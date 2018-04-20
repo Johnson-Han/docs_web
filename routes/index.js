@@ -42,9 +42,9 @@ router.post('/lf_note_add', multer({storage : storage1}).single('file'),function
   var upfdate=Date.now();
   var newDate = new Date();
   newDate.setTime(upfdate);
-  var filepath ="/files/lf1/工作联系单/"+req.file.originalname;
+  var filepath ="/files/lf1/工作联系单/"+req.file.filename;
   var upftime=newDate.toISOString();
-  sql='insert into param_requirement (subject,contact_from,contact_to,file_addr,name,re_sign_date,note) values (\''+req.body.name+'\',\''+req.body.contact_from+'\',\''+req.body.contact_to+'\',\''+filepath+'\',\''+req.body.name+'\',\''+upftime+'\',\''+req.body.note+'\')';
+  sql='insert into param_requirement (subject,contact_from,contact_to,file_addr,name,re_sign_date,filename,note) values (\''+req.body.name+'\',\''+req.body.contact_from+'\',\''+req.body.contact_to+'\',\''+filepath+'\',\''+req.body.name+'\',\''+upftime+'\',\''+req.file.filename+'\',\''+req.body.note+'\')';
 
   // console.log(upftime);
 
