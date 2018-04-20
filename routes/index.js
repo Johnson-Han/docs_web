@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
-var pg1 = require('./pgconn');
+var pg2 = require('./pgconn');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'TMSR-Documents 核能文档管理系统' });
@@ -49,9 +49,9 @@ router.post('/lf_note_add', multer({storage : storage1}).single('file'),function
   // console.log(upftime);
 
   console.log(sql);
-  pg1.query(sql, function (result) {
+  pg2.query(sql, function (result) {
     
-    // console.log(result); 
+    console.log(result); 
 
     });
   Wurl = '/lfcontact/' + req.body.name;
