@@ -16,23 +16,24 @@ router.get('/add_new_contact', function (req, res, next) {
   res.render('lfnewcontact');
 })
 
+
+//工作联系单的保存路径
 var storage1 = multer.diskStorage({
-  destination: function (req, file, cb) {
+    destination: function (req, file, cb) {
       
       cb(null, process.cwd()+"/public/files");    // 保存的路径，备注：需要自己创建
-  },
-  filename: function (req, file, cb) {
-      // 将保存文件名设置为 字段名 + 时间戳，比如 logo-1478521468943
+     },
+    filename: function (req, file, cb) {
+      // 将保存文件名设置为 时间戳+字段名 ，比如 1478521468943-技术需求
       //  filename2=file.originalname;
       //  filedate=Date.now();
       //  filename1=filedate+'-'+filename2;
-      
       cb(null, Date.now()+'-'+file.originalname);  
   }
 
-
 });
 
+//新建工作联系单
 // var upload = multer({ dest: '/Users/hanlf/gitHub/docs_web/public/files' })
 router.post('/lf_note_add', multer({storage : storage1}).single('file'),function(req,res,next){
   console.log(req.body);
@@ -50,7 +51,7 @@ router.post('/lf_note_add', multer({storage : storage1}).single('file'),function
   console.log(sql);
   pg1.query(sql, function (result) {
     
-    // console.log(result.rows); 
+    console.log(result.rows); 
     Wurl='/lfcontact/'+req.body.name;
     res.redirect(Wurl);
     });
