@@ -53,10 +53,12 @@ router.post('/lf_contact_add', multer({storage : storage1}).single('file'),funct
     console.log(req.file);
   // console.log(process.cwd());
     var upfdate=Date.now();
+    var localOffset = d.getTimezoneOffset() * 60000;
     var newDate = new Date();
-    newDate.setTime(upfdate);
+    newDate.setTime(upfdate+localOffset);
     var filepath ="/files/lf1/工作联系单/"+req.file.filename;
-    var upftime = newDate.toLocaleString();
+    
+    var upftime = newDate.toISOString();
     sql='insert into param_requirement (subject,contact_from,contact_to,file_addr,name,re_sign_date,filename,note) values (\''+req.body.name+'\',\''+req.body.contact_from+'\',\''+req.body.contact_to+'\',\''+filepath+'\',\''+req.body.name+'\',\''+upftime+'\',\''+req.file.filename+'\',\''+req.body.note+'\')';
 
 
