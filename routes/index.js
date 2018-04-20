@@ -52,10 +52,10 @@ router.post('/lf_note_add', multer({storage : storage1}).single('file'),function
   pg1.query(sql, function (result) {
     
     console.log(result.rows); 
-    Wurl='/lfcontact/'+req.body.name;
-    res.redirect(Wurl);
-    });
 
+    });
+  Wurl = '/lfcontact/' + req.body.name;
+  res.redirect(Wurl);
 
 })
 
