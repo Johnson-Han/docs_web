@@ -49,16 +49,7 @@ router.post('/lf_note_add', multer({storage : storage1}).single('file'),function
   // console.log(upftime);
 
   console.log(sql);
-  pg2.query(sql, function (err,result) {
-    
-    if(err){
-     console.log(err); 
-     pg2.end(); 
-    }
-    
-    pg2.end();
-
-    });
+  pg2.query(sql, function (result) {});
   Wurl = '/lfcontact/' + req.body.name;
   res.redirect(Wurl);
 
