@@ -53,8 +53,9 @@ router.post('/lf_contact_add', multer({storage : storage1}).single('file'),funct
     console.log(req.file);
   // console.log(process.cwd());
     var upfdate=Date.now();
-    var localOffset = d.getTimezoneOffset() * 60000;
     var newDate = new Date();
+    var localOffset = newDate.getTimezoneOffset() * 60000;
+    
     newDate.setTime(upfdate+localOffset);
     var filepath ="/files/lf1/工作联系单/"+req.file.filename;
     
