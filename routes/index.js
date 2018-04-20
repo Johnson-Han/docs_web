@@ -25,11 +25,11 @@ router.get('/add_new_subject/:contact_name', function (req, res, next) {
 })
 
 //按钮回复联系单的路由
-router.get('/add_reply/:reply_name', function (req, res, next) {
-  console.log(req.params);
-  res.render('lfcontactreply');
-})
 
+router.get('/add_reply/:contact_name', function (req, res, next) {
+  // console.log(req.params)
+  res.render('lfcontactreply', { title: req.params.contact_name });
+})
 
 
 //工作联系单的保存路径
