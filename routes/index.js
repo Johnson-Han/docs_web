@@ -25,9 +25,9 @@ router.get('/add_new_subject/:contact_name', function (req, res, next) {
 })
 
 //按钮回复联系单的路由
-router.get('/add_new_reply/:reply_name', function (req, res, next) {
-  console.log(req.params)
-  res.render('lfnewreply', { title: req.params.reply_name });
+router.get('/add_reply/:reply_name', function (req, res, next) {
+  console.log(req.params);
+  res.render('lfnewreply', {title: req.params.reply_name});
 })
 
 
