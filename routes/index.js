@@ -21,7 +21,7 @@ router.get('/add_new_contact', function (req, res, next) {
 var storage1 = multer.diskStorage({
     destination: function (req, file, cb) {
       
-      cb(null, process.cwd()+"/files/lf1/工作联系单");    // 保存的路径，备注：需要自己创建
+      cb(null, process.cwd()+"/public/files/lf1/工作联系单");    // 保存的路径，备注：需要自己创建
      },
     filename: function (req, file, cb) {
       // 将保存文件名设置为 时间戳+字段名 ，比如 1478521468943-技术需求
@@ -42,9 +42,9 @@ router.post('/lf_note_add', multer({storage : storage1}).single('file'),function
   var upfdate=Date.now();
   var newDate = new Date();
   newDate.setTime(upfdate);
-  
+  var filepath ="/files/lf1/工作联系单/"+req.file.originalname;
   var upftime=newDate.toISOString();
-  sql='insert into param_requirement (subject,contact_from,contact_to,file_addr,name,re_sign_date,note) values (\''+req.body.name+'\',\''+req.body.contact_from+'\',\''+req.body.contact_to+'\',\''+req.file.path+'\',\''+req.body.name+'\',\''+upftime+'\',\''+req.body.note+'\')';
+  sql='insert into param_requirement (subject,contact_from,contact_to,file_addr,name,re_sign_date,note) values (\''+req.body.name+'\',\''+req.body.contact_from+'\',\''+req.body.contact_to+'\',\''+filepath+'\',\''+req.body.name+'\',\''+upftime+'\',\''+req.body.note+'\')';
 
   // console.log(upftime);
 
