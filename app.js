@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var lfcontact = require('./routes/lfcontact');
 var data = require('./routes/data');
-var reply = require('./routes/reply');
 
 var app = express();
 
@@ -29,7 +28,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/data', data);
 app.use('/lfcontact', lfcontact);
-app.use('/reply', reply);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
