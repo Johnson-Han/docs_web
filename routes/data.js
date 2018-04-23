@@ -89,6 +89,17 @@ router.get('/lf1', function(req, res, next) {
 
 });
 
+router.get('/lf1_systems', function(req, res, next) {
+  process.env.TZ = "Asia/Shanghai";
+  sql ="select systems from systems order by parent";
+  pg1.query(sql, function (result) {
+  res.jsonp(result.rows);
+  // console.log(result.rows); 
+
+  });
+
+});
+
 router.get('/input_file', function(req, res, next) {
   // fs.readdir("./public/files/TMSR-LF1工程/初步设计/01.设计输入参数",function(err,files){
     // console.log(files);

@@ -35,13 +35,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="js/angular.min.js"></script>
 
 </head>
 
 <body >
 
-    <div id="wrapper">
+    <div id="wrapper" ng-app="myApp" ng-controller="myCtrl">
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -228,7 +227,7 @@
             </ul>
             <!-- /.navbar-top-links -->
         
-            <div class="navbar-default sidebar" role="navigation" ng-app="myApp" ng-controller="myCtrl">
+            <div class="navbar-default sidebar" role="navigation" >
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
@@ -315,18 +314,31 @@
                                 <div class="col-lg-6">
                                     <form action="/lf_subject_add" method="post" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label>补充标题</label>
+                                            <label>标题</label>
                                             <input  style="display:none" name="name" id="name" value='<%= title %>'>
                                             
                                             <input class="form-control"  placeholder="补充内容的标题" required  name="subject"  id="subject"  required data-validation-required-message="补充内容名称">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" >
                                             <label>发起</label>
-                                            <input class="form-control" placeholder="联系单发起部门/系统" required name="contact_from" id="contact_from" data-validation-required-message="主体名称">
+                                            <input  ng-change="changeKeyValue()"  class="form-control" ng-model="search" placeholder="发起联系单的部门/系统" required name="contact_from" id="contact_from" data-validation-required-message="主体名称">
+                                            <div ng-show='showV'>
+                                                <select  ng-value='from_v' ng-click="changeV()" ng-model='fuzzyV' ng-options='x.systems for x in system_scope | fuzzy: search'>
+                                                
+                                                    <!-- <option  ng-repeat="x in system_scope | fuzzy: search">{{ x.systems }}</option>  -->
+                                                 </select>
+                                            </div>
+                                           
                                         </div>
                                         <div class="form-group">
                                             <label>发往</label>
-                                            <input class="form-control" placeholder="发往到的部门/系统" required name="contact_to" id="contact_to" data-validation-required-message="主体名称">
+                                            <input class="form-control" ng-change="changeKeyValue2()" ng-model='searchM' placeholder="发往到的部门/系统" required name="contact_to" id="contact_to" data-validation-required-message="主体名称">
+                                            <div ng-show='showM'>
+                                                    <select  ng-value='from_M' ng-click="changeM()" ng-model='fuzzyM' ng-options='x.systems for x in system_scope | fuzzy: searchM'>
+                                                    
+                                                        <!-- <option  ng-repeat="x in system_scope | fuzzy: search">{{ x.systems }}</option>  -->
+                                                     </select>
+                                                </div>
                                         </div>                                        
                                         <div class="form-group">
                                             <label>添加附件</label>
@@ -374,15 +386,16 @@
     <script src="/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
+    <!-- <script src="/bower_components/angular/angular.min.js"></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js"></script>
+    <script src="/bower_components/angular-filter/dist/angular-filter.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-        var app = angular.module('myApp', []);
-            app.controller('myCtrl', function ($scope, $http) {
-                 var myUrl = "http://10.10.2.29:3000/data/lf1?callback=JSON_CALLBACK";
-
+        var app = angular.module('myApp', ['angular.filter']);
+            app.controller('myCtrl',function ($scope, $http) {
+                var myUrl = "http://10.10.2.29:3000/data/lf1?callback=JSON_CALLBACK";
 
                 $http.jsonp(myUrl).success(function (response) {
 
@@ -410,7 +423,43 @@
                     $scope.count = count;
                     $scope.total_num = file_sum;
                     $scope.total_sub = file_sub;
-                })
+                });
+              
+                $scope.showV=false;
+                $scope.changeKeyValue=function(){
+
+                    if($scope.search==''){
+                        $scope.showV=false}
+                    else{
+                        $scope.showV=true;
+                        
+                    }
+                }
+                $scope.changeV=function(){
+                    $scope.search=$scope.fuzzyV.systems;
+                    $scope.showV=false;
+
+                }
+                $scope.showM=false;
+                $scope.changeKeyValue2=function(){
+
+                    if($scope.searchM==''){
+                        $scope.showM=false}
+                    else{
+                        $scope.showM=true;
+                        
+                    }
+                }
+                $scope.changeM=function(){
+                    $scope.searchM=$scope.fuzzyM.systems;
+                    $scope.showM=false;
+
+                }
+                var myUrl_systems = "http://10.10.2.29:3000/data/lf1_systems?callback=JSON_CALLBACK";
+                $http.jsonp(myUrl_systems).success(function (response) {
+                    $scope.system_scope = response;
+                    
+                });              
         });
     </script>
 

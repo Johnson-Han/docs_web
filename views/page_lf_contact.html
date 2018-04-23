@@ -321,7 +321,7 @@
                                             <h4 class="timeline-title">{{x.subject}}</h4>
                                             <p>
                                                 <small class="text-muted">
-                                                    <i class="fa fa-clock-o"></i>{{x.re_sign_date}}</small>
+                                                    <i class="fa fa-clock-o"></i>&nbsp{{x.re_sign_date|limitTo:10}}</small>
                                                 <br>
                                                 <small class="text-muted">发起:&nbsp{{x.contact_from}} &nbsp&nbsp&nbsp&nbsp&nbsp 发往:&nbsp;{{x.contact_to}} </small>
                                                 
@@ -332,7 +332,7 @@
                                             <hr>
                                             <div class="btn-group">
                                                 <a type="button" class="btn btn-block btn-social btn-dropbox" href="{{x.file_addr}}">
-                                                    <i class="fa fa-paperclip"></i>&nbsp附件&nbsp  {{x.filename}}
+                                                    <i class="fa fa-paperclip"></i>&nbsp附件&nbsp{{x.filename.slice(15,45)}}{{x.filename.length>30?'...':''}}
                                                 </a>
                                             </div>
                                          </div>
@@ -348,7 +348,7 @@
                                             <h4 class="timeline-title">{{x.subject}}</h4>
                                             <p>
                                                 <small class="text-muted">
-                                                    <i class="fa fa-clock-o"></i>{{x.reply_date}}</small>
+                                                    <i class="fa fa-clock-o"></i>&nbsp{{x.reply_date.slice(0,10)}}</small>
                                                 <br>
                                                 <small class="text-muted">回复:&nbsp{{x.reply_from}} </small>
                                             </p>
@@ -359,7 +359,7 @@
                                         <hr>
                                         <div class="btn-group">
                                                 <a type="button" class="btn btn-block btn-social btn-dropbox" href="{{x.file_addr}}">
-                                                    <i class="fa fa-paperclip"></i>&nbsp附件&nbsp {{x.filename}}
+                                                    <i class="fa fa-paperclip"></i>&nbsp附件&nbsp {{x.filename.slice(15,45)}}{{x.filename.length>30?'...':''}}
                                                 </a>
                                         </div>
                                     </div>
