@@ -67,7 +67,7 @@ router.post('/lf_primary_add', multer({ storage: storage3 }).single('file'), fun
 
   console.log(sql);
   pg2.query(sql, function (result) { });
-  Wurl = '/lf_primary_timeline' + req.body.filename;
+  Wurl = '/lf_primary_timeline/' + req.body.filename;
   res.redirect(Wurl);
 
 })
