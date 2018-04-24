@@ -62,7 +62,7 @@ router.post('/lf_primary_add', multer({ storage: storage3 }).single('file'), fun
 
   var upftime = newDate.toISOString();
 
-  sql = 'insert into primary_timeline (subject,origin_name,filename,file_addr,upload_date,status,note,timeline_type) values (\'' + req.body.subject + '\',\'' + req.file.filename + '\',\'' + '\',\'' + req.body.filename + '\',\''  + filepath+ '\',\'' + upftime + '\',\'' + req.body.status + '\',\'' + req.body.note + '\',\'\')';
+  sql = 'insert into primary_timeline (subject,origin_name,filename,file_addr,upload_date,status,note,timeline_type) values (\'' + req.body.subject + '\',\'' + req.file.filename + '\',\''  + req.body.filename + '\',\''  + filepath+ '\',\'' + upftime + '\',\'' + req.body.status + '\',\'' + req.body.note + '\',\'\')';
 
 
   console.log(sql);
