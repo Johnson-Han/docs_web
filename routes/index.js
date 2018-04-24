@@ -13,6 +13,7 @@ router.get('/lf1_primary', function(req, res, next) {
 });
 
 router.get('/lfprimary/?fileindex', function (req, res, next) {
+  console.log('good');
   res.render('page_lf_primary', { file_name: req.params.fileindex});
 });
 
