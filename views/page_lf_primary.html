@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>TMSR Documents 初步设计文件</title>
+    <title>初步设计文件:<%= file_name %></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -298,7 +298,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">LF1技术通知单</h1>
+                    <h1 class="page-header">初步设计文件:&nbsp;<%= file_name %></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -307,36 +307,60 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            文件列表
+                            <i class="fa fa-clock-o fa-fw"></i>文件进程
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>文件序号</th>
-                                        <th>系统名称</th>
-                                        <th>文件名称</th>
-                                        <th>文件编码</th>
-                                        <th>文件作者</th>
-                                        <th>时间节点</th>
-                                        <th>文件版本</th>
-                                        <th>文件状态</th>
+                            <ul class="timeline">
+                                <li ng-repeat="x in request">
+                                    <div class="timeline-badge success">
+                                        <i class="fa fa-search"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading ">
+                                            <h4 class="timeline-title">{{x.subject}}</h4>
+                                            <p>
+                                                <small class="text-muted">
+                                                    <i class="fa fa-clock-o"></i>&nbsp{{x.upload_date|limitTo:10}}</small>
+                                                <br>
+                                                <small class="text-muted">系统:&nbsp{{x.system}} </small>
+                                                
+                                            </p>
+                                        </div>
+                                        <div class="{{x.timeline_style}}">
+                                            <p>{{x.note}}</p>
+                                            <hr>
+                                            <div class="btn-group">
+                                                <a type="button" class="btn btn-block btn-social btn-dropbox" href="{{x.file_addr}}">
+                                                    <i class="fa fa-paperclip"></i>&nbsp附件&nbsp{{x.filename.slice(15,45)}}{{x.filename.length>30?'...':''}}
+                                                </a>
+                                            </div>
+                                         </div>
 
-                                    </tr>
-                                </thead>
+                                    </div>
+                                </li>
 
-                            </table>
-                            <!-- /.table-responsive -->
-                            <!-- <div class="well">
-                                <h4>信息描述</h4>
-                                <p>项目自初步设计批准之日起至通过竣工验收正式交付使用之日止，对已批准的初步设计文件、技术设计文件或施工图设计文件所进行的修改、完善、优化等活动,应以图纸或设计变更通知单的形式发出。</p>
-                                <a class="btn btn-default btn-lg btn-block" target="_blank" href="/">上传新的技术通知单</a>
-                            </div> -->
+                    
+
+                            </ul>
+
+                            <hr>
+                    
+                    
+                            <div class="col-lg-6 ">
+                                
+                                    <a class="btn btn-outline btn-primary btn-lg btn-block" target="_blank" href="/add_new_primary/<%= title_name %>">提交文件</a>
+                                
+                            </div>
+                            <div class="col-lg-6 ">
+                               
+                                    <a class="btn btn-outline btn-primary btn-lg btn-block" target="_blank" href="/add_primary_reply/<%= title_name %>">回复</a>
+                               
+                            </div>
                         </div>
                         <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
+ 
+                     </div><!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -364,70 +388,13 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
-    <script src="js/angular.min.js"></script>   
+    <script src="/js/angular.min.js"></script>   
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
         var app = angular.module('myApp', []);
             app.controller('myCtrl', function ($scope, $http) {
-                 var myUrl_note = "http://10.10.2.29:3000/data/lf1_primary?callback=JSON_CALLBACK";
-                 var myUrl = "http://10.10.2.29:3000/data/lf1?callback=JSON_CALLBACK";
-
-                 $http.jsonp(myUrl_note).success(function (response) {
-                     var data = new Array();
-                     var i = 0;
-                     response.forEach(function (responseE) {
-                         // console.log(response);
-                         dead_line=responseE.dead_line;
-                         if(dead_line){
-                            dead_line=dead_line.slice(0,9);
-                         }
-                         
-                         data.push([responseE.index, responseE.system, responseE.file_name, responseE.file_encode,responseE.editor,dead_line,responseE.version,responseE.doc_status]);
-                         i++;
-                     })
-                     $(document).ready(function () {
-                         $('#dataTables-example').DataTable({
-
-                             // "paging":   false,
-                             // "ordering": false,
-                             "info": true,
-                             "language": {
-                                 "lengthMenu": "每页 _MENU_ 条记录",
-                                 "zeroRecords": "没有找到记录",
-                                 "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-                                 "infoEmpty": "无记录",
-                                 "infoFiltered": "(从 _MAX_ 条记录过滤)",
-                                 "search": "检索",
-
-                                 "paginate": {
-                                     "first": "第一页",
-                                     "previous": "上一页",
-                                     "next": "下一页",
-                                     "last": "最后一页"
-                                 }
-                             },
-
-                             "data": data,
-                             "columnDefs": [
-                                 {
-                                     // The `data` parameter refers to the data for the cell (defined by the
-                                     // `data` option, which defaults to the column being worked with, in
-                                     // this case `data: 0`.
-                                     "render": function (data, type, row) {
-                                         // return data +' ('+ row[3]+')';
-                                        //  return '<a href="' + row[4] + '">' + data + '</a>';
-                                         return '<a href=/lfprimary/'+row[2] +'>' + data + '</a>';
-                                    },
-                                     "targets": 2
-                                 }
-                                //  { "visible": false, "targets": [4] }
-                             ]
-
-                         });
-                     }); 
-
-                 });
-
+                var myUrl = "http://10.10.2.29:3000/data/lf1?callback=JSON_CALLBACK";
+                
                 $http.jsonp(myUrl).success(function (response) {
 
                     var i = 0;
@@ -455,7 +422,67 @@
                     $scope.total_num = file_sum;
                     $scope.total_sub = file_sub;
                 })
-        });
+                
+                
+
+                var file_name = $(document).attr("file_name");
+                var myUrl2 = 'http://10.10.2.29:3000/data/lf_primary_timeline/' + file_name + '?callback=JSON_CALLBACK'
+                $http.jsonp(myUrl2).success(function (response) {
+                    // var i = 0;
+                    // subjects = [];
+                    // contact_from =[];
+                    // contact_to =[]
+                    // sign_date =[];
+                    // note=[];
+                    // file_path=[];
+                    // response.forEach(function (key) {
+                    //     subjects[i]=key.subject;
+                    //     contact_from[i]=key.contact_from;
+                    //     contact_to[i]=key.contact_to
+                    //     sign_date[i]=key.resign_dat;
+                    //     note[i]=key.note;
+                    //     file_path[i]=key.file_addr;
+                    // });
+                    // $scope.subject=subjects;
+                    // $scope.contact_from=contact_from;
+                    // $scope.contact_to=contact_to;
+                    // $scope.sign_date=sign_date;
+                    // $scope.file_path=file_path;
+                    // $scope.note=note;
+                    $scope.request=response;
+
+                });
+           
+                // var myUrl2 = 'http://10.10.2.29:3000/data/lf_primary_reply/' + file_name + '?callback=JSON_CALLBACK'
+                // $http.jsonp(myUrl2).success(function (response) {
+                //     // var i = 0;
+                //     // subjects = [];
+                //     // contact_from =[];
+                //     // contact_to =[]
+                //     // sign_date =[];
+                //     // note=[];
+                //     // file_path=[];
+                //     // response.forEach(function (key) {
+                //     //     subjects[i]=key.subject;
+                //     //     contact_from[i]=key.contact_from;
+                //     //     contact_to[i]=key.contact_to
+                //     //     sign_date[i]=key.resign_dat;
+                //     //     note[i]=key.note;
+                //     //     file_path[i]=key.file_addr;
+                //     // });
+                //     // $scope.subject=subjects;
+                //     // $scope.contact_from=contact_from;
+                //     // $scope.contact_to=contact_to;
+                //     // $scope.sign_date=sign_date;
+                //     // $scope.file_path=file_path;
+                //     // $scope.note=note;
+                //     $scope.reply = response;
+
+                // });
+                           
+           
+           });
+
     </script>
 
 </body>

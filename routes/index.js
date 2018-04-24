@@ -12,6 +12,10 @@ router.get('/lf1_primary', function(req, res, next) {
   res.render('lfprimary', { title: 'TMSR-Documents  LF1初步设计文件' });
 });
 
+router.get('/lfprimary/?fileindex', function (req, res, next) {
+  res.render('lfprimfile', { file_name: req.params.fileindex});
+});
+
 router.get('/lf1_note', function(req, res, next) {
   res.render('lfnote', { title: 'TMSR-Documents  LF1技术联系单' });
 });
