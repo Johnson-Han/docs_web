@@ -312,7 +312,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <ul class="timeline">
-                                <li ng-repeat="x in request">
+                                <li class={{x.timeline_type}} ng-repeat="x in request">
                                     <div class="timeline-badge success">
                                         <i class="fa fa-search"></i>
                                     </div>
@@ -327,7 +327,7 @@
                                                 
                                             </p>
                                         </div>
-                                        <div class="{{x.timeline_type}}">
+                                        <div class="timeline-body">
                                             <p>{{x.note}}</p>
                                             <hr>
                                             <div class="btn-group">
