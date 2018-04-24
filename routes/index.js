@@ -62,7 +62,7 @@ router.post('/lf_primary_add', multer({ storage: storage3 }).single('file'), fun
 
   var upftime = newDate.toISOString();
 
-  sql = 'insert into param_requirement (subject,filename,file_addr,upload_date,status,note,timeline_type) values (\'' + req.body.subject + '\',\'' + req.body.filename + '\',\'' + uptime + '\',\'' + req.body.satus + '\',\'' + req.body.note + '\',\'timeline\')';
+  sql = 'insert into param_requirement (subject,filename,file_addr,upload_date,status,note,timeline_type) values (\'' + req.body.subject + '\',\'' + req.body.filename + '\',\'' + upftime + '\',\'' + req.body.satus + '\',\'' + req.body.note + '\',\'timeline\')';
 
 
   console.log(sql);
