@@ -58,7 +58,7 @@ router.post('/lf_primary_add', multer({ storage: storage3 }).single('file'), fun
   var localOffset = newDate.getTimezoneOffset() * 60000;
 
   newDate.setTime(upfdate + localOffset);
-  var filepath = "/files/lf1/初步设计/" + req.file.filename;
+  var filepath = "/files/lf1/初步设计文件/" + req.file.filename;
 
   var upftime = newDate.toISOString();
 
