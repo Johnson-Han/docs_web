@@ -13,9 +13,7 @@ router.get('/lf1_primary', function(req, res, next) {
 });
 
 router.get('/lf_primary_timeline/:fileindex', function (req, res, next) {
-    res.render('page_lf_primary', { file_name: req.params.fileindex }, function (err, html) {
-    console.log(err);
-  });
+    res.render('page_lf_primary', { file_name: req.params.fileindex })
 });
 
 router.get('/lf1_note', function(req, res, next) {
