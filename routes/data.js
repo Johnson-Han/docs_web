@@ -194,8 +194,8 @@ router.get('/lf_primary_timeline/:post_name', function (req, res, next) {
   // console.log(files);
   // filelist = getFileList("./public/files/TMSR-LF1工程/接口文件/工作联系单");
   // res.jsonp(filelist);
-  // console.log(filelist);
-  sql = 'select * from  param_requirement where name= \'' + req.params.post_name + '\';';
+  console.log(req.params.post_name);
+  sql = 'select * from  primary_timeline where name= \'' + req.params.post_name + '\';';
   console.log(sql);
   pg1.query(sql, function (result) {
 
