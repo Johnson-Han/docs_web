@@ -394,7 +394,7 @@
     <script>
         var app = angular.module('myApp', ['angular.filter']);
             app.controller('myCtrl',function ($scope, $http) {
-                var myUrl = "http://127.0.0.1:3000/data/lf1?callback=JSON_CALLBACK";
+                var myUrl = "http://10.10.2.29:3000/data/lf1?callback=JSON_CALLBACK";
 
                 $http.jsonp(myUrl).success(function (response) {
 
@@ -454,7 +454,7 @@
                     $scope.showM=false;
 
                 }
-                var myUrl_systems = "http://127.0.0.1:3000/data/lf1_systems?callback=JSON_CALLBACK";
+                var myUrl_systems = "http://10.10.2.29:3000/data/lf1_systems?callback=JSON_CALLBACK";
                 $http.jsonp(myUrl_systems).success(function (response) {
                     $scope.system_scope = response;
                     
