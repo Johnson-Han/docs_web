@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>初步设计文件:<%= file_name %></title>
+    <title>添加初步设计文件 <%= title %></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,9 +38,9 @@
 
 </head>
 
-<body ng-app="myApp" ng-controller="myCtrl">
+<body >
 
-    <div id="wrapper">
+    <div id="wrapper" ng-app="myApp" ng-controller="myCtrl">
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -227,7 +227,7 @@
             </ul>
             <!-- /.navbar-top-links -->
         
-            <div class="navbar-default sidebar" role="navigation">
+            <div class="navbar-default sidebar" role="navigation" >
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
@@ -298,7 +298,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">初步设计文件:&nbsp《;<%= file_name %>》</h1>
+                    <h1 class="page-header">提交初步设计文件：《<%= title %>》</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -307,60 +307,56 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i>文件进程
+                            填写表单
                         </div>
-                        <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <ul class="timeline">
-                                <li ng-repeat="x in request">
-                                    <div class="timeline-badge success">
-                                        <i class="fa fa-search"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading ">
-                                            <h4 class="timeline-title">{{x.subject}}</h4>
-                                            <p>
-                                                <small class="text-muted">
-                                                    <i class="fa fa-clock-o"></i>&nbsp{{x.upload_date|limitTo:10}}</small>
-                                                <br>
-                                                <small class="text-muted">系统:&nbsp{{x.system}} </small>
-                                                
-                                            </p>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form action="/lf_primary_add" method="post" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label>标题</label>
+                                            <input  style="display:none" name="filename" id="filename" value='<%= title %>'>
+                                            
+                                            <input class="form-control"  placeholder="内容的标题" required  name="subject"  id="subject"  required data-validation-required-message="补充内容名称">
                                         </div>
-                                        <div class="{{x.timeline_type}}">
-                                            <p>{{x.note}}</p>
-                                            <hr>
-                                            <div class="btn-group">
-                                                <a type="button" class="btn btn-block btn-social btn-dropbox" href="{{x.file_addr}}">
-                                                    <i class="fa fa-paperclip"></i>&nbsp附件&nbsp{{x.filename.slice(15,45)}}{{x.filename.length>30?'...':''}}
-                                                </a>
-                                            </div>
-                                         </div>
+                                        <!-- <div class="form-group" >
+                                            <label>作者</label>
+                                            <input  class="form-control" ng-model="search" placeholder="上传" required name="file_" id="contact_from" data-validation-required-message="主体名称">
+                                        </div>
+                                        -->
+                                        <div class="form-group">
+                                            <label>提交理由</label>
+                                            <select  name="status" id="status" required>
+                                                <option value="submmitted" >初次提交</option>
+                                                <option value="update_for_validated">校核修改提交</option>
+                                                <option value="update_for_reviewed">审阅修改提交</option>
+                                                <option value="update_for_couter_signed">会签修改提交</option>
+                                                <option value="update_for_approved ">审定修改提交</option>
+                                                <option value="update_for_authorized">批准修改提交</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>添加附件</label>
+                                            <input type="file" name="file" id="file" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>备注</label>
+                                            <textarea class="form-control" rows="3"  name="note" id="note" data-validation-required-message="设计文件内容简介"></textarea>
+                                        </div>
 
-                                    </div>
-                                </li>
 
-                    
 
-                            </ul>
+                                        <button type="submit" class="btn btn-default">Submit Button</button>
 
-                            <hr>
-                    
-                    
-                            <div class="col-lg-6 ">
-                                
-                                    <a class="btn btn-outline btn-primary btn-lg btn-block" target="_blank" href="/add_new_primary/<%= file_name %>">提交文件</a>
-                                
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
                             </div>
-                            <div class="col-lg-6 ">
-                               
-                                    <a class="btn btn-outline btn-primary btn-lg btn-block" target="_blank" href="/add_primary_reply/<%= file_name %>">回复</a>
-                               
-                            </div>
+                            <!-- /.row (nested) -->
                         </div>
                         <!-- /.panel-body -->
- 
-                     </div><!-- /.panel -->
+                    </div>
+                    <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -385,16 +381,17 @@
     <script src="/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
+    <!-- <script src="/bower_components/angular/angular.min.js"></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js"></script>
+    <script src="/bower_components/angular-filter/dist/angular-filter.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
-    <script src="/js/angular.min.js"></script>   
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-        var app = angular.module('myApp', []);
-            app.controller('myCtrl', function ($scope, $http) {
+        var app = angular.module('myApp', ['angular.filter']);
+            app.controller('myCtrl',function ($scope, $http) {
                 var myUrl = "http://10.10.2.29:3000/data/lf1?callback=JSON_CALLBACK";
-                
+
                 $http.jsonp(myUrl).success(function (response) {
 
                     var i = 0;
@@ -421,68 +418,44 @@
                     $scope.count = count;
                     $scope.total_num = file_sum;
                     $scope.total_sub = file_sub;
-                })
-                
-                
-
-                var file_name = $(document).attr("file_name");
-                var myUrl2 = 'http://10.10.2.29:3000/data/lf_primary_timeline/' + file_name + '?callback=JSON_CALLBACK'
-                $http.jsonp(myUrl2).success(function (response) {
-                    // var i = 0;
-                    // subjects = [];
-                    // contact_from =[];
-                    // contact_to =[]
-                    // sign_date =[];
-                    // note=[];
-                    // file_path=[];
-                    // response.forEach(function (key) {
-                    //     subjects[i]=key.subject;
-                    //     contact_from[i]=key.contact_from;
-                    //     contact_to[i]=key.contact_to
-                    //     sign_date[i]=key.resign_dat;
-                    //     note[i]=key.note;
-                    //     file_path[i]=key.file_addr;
-                    // });
-                    // $scope.subject=subjects;
-                    // $scope.contact_from=contact_from;
-                    // $scope.contact_to=contact_to;
-                    // $scope.sign_date=sign_date;
-                    // $scope.file_path=file_path;
-                    // $scope.note=note;
-                    $scope.request=response;
-
                 });
-           
-                // var myUrl2 = 'http://10.10.2.29:3000/data/lf_primary_reply/' + file_name + '?callback=JSON_CALLBACK'
-                // $http.jsonp(myUrl2).success(function (response) {
-                //     // var i = 0;
-                //     // subjects = [];
-                //     // contact_from =[];
-                //     // contact_to =[]
-                //     // sign_date =[];
-                //     // note=[];
-                //     // file_path=[];
-                //     // response.forEach(function (key) {
-                //     //     subjects[i]=key.subject;
-                //     //     contact_from[i]=key.contact_from;
-                //     //     contact_to[i]=key.contact_to
-                //     //     sign_date[i]=key.resign_dat;
-                //     //     note[i]=key.note;
-                //     //     file_path[i]=key.file_addr;
-                //     // });
-                //     // $scope.subject=subjects;
-                //     // $scope.contact_from=contact_from;
-                //     // $scope.contact_to=contact_to;
-                //     // $scope.sign_date=sign_date;
-                //     // $scope.file_path=file_path;
-                //     // $scope.note=note;
-                //     $scope.reply = response;
+              
+                $scope.showV=false;
+                $scope.changeKeyValue=function(){
 
-                // });
-                           
-           
-           });
+                    if($scope.search==''){
+                        $scope.showV=false}
+                    else{
+                        $scope.showV=true;
+                        
+                    }
+                }
+                $scope.changeV=function(){
+                    $scope.search=$scope.fuzzyV.systems;
+                    $scope.showV=false;
 
+                }
+                $scope.showM=false;
+                $scope.changeKeyValue2=function(){
+
+                    if($scope.searchM==''){
+                        $scope.showM=false}
+                    else{
+                        $scope.showM=true;
+                        
+                    }
+                }
+                $scope.changeM=function(){
+                    $scope.searchM=$scope.fuzzyM.systems;
+                    $scope.showM=false;
+
+                }
+                var myUrl_systems = "http://10.10.2.29:3000/data/lf1_systems?callback=JSON_CALLBACK";
+                $http.jsonp(myUrl_systems).success(function (response) {
+                    $scope.system_scope = response;
+                    
+                });              
+        });
     </script>
 
 </body>

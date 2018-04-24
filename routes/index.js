@@ -25,6 +25,59 @@ router.get('/add_new_contact', function (req, res, next) {
   res.render('lfnewcontact');
 })
 
+
+//初设计文件时间轴的添加
+router.get('/add_new_primary/:file_name', function (req, res, next) {
+  // console.log(req.params)
+  res.render('lfnewprimary', { title: req.params.file_name });
+})
+
+
+//工作联系单的保存路径
+var storage3 = multer.diskStorage({
+  destination: function (req, file, cb) {
+
+    cb(null, process.cwd() + "/public/files/lf1/初步设计文件");    // 保存的路径，备注：需要自己创建
+  },
+  filename: function (req, file, cb) {
+    // 将保存文件名设置为 时间戳+字段名 ，比如 1478521468943-技术需求
+    //  filename2=file.originalname;
+    //  filedate=Date.now();
+    //  filename1=filedate+'-'+filename2;
+    cb(null, Date.now() + '-' + file.originalname);
+  }
+
+});
+//为数据库增加文件
+router.post('/lf_primary_add', multer({ storage: storage3 }).single('file'), function (req, res, next) {
+  console.log(req.body);
+  console.log(req.file);
+  // console.log(process.cwd());
+  var upfdate = Date.now();
+  var newDate = new Date();
+  var localOffset = newDate.getTimezoneOffset() * 60000;
+
+  newDate.setTime(upfdate + localOffset);
+  var filepath = "/files/lf1/初步设计/" + req.file.filename;
+
+  var upftime = newDate.toISOString();
+
+  sql = 'insert into param_requirement (subject,filename,file_addr,upload_date,status,note,timeline_type) values (\'' + req.body.subject + '\',\'' + req.body.filename + '\',\'' + uptime + '\',\'' + req.body.satus + '\',\'' + req.body.note + '\',\'timeline\')';
+
+
+  console.log(sql);
+  pg2.query(sql, function (result) { });
+  Wurl = '/lfcontact/' + req.body.name;
+  res.redirect(Wurl);
+
+})
+
+//初设文件时间轴的答复
+router.get('/add_primary_reply/:file_name', function (req, res, next) {
+  // console.log(req.params)
+  res.render('lfprimaryreply', { title: req.params.file_name });
+})
+
 //按钮补充联系单的路由
 router.get('/add_new_subject/:contact_name', function (req, res, next) {
   // console.log(req.params)
@@ -81,6 +134,10 @@ router.post('/lf_contact_add', multer({storage : storage1}).single('file'),funct
     res.redirect(Wurl);
 
 })
+
+
+
+
 
 //补充联系单的添加路由
 router.post('/lf_subject_add', multer({ storage: storage1 }).single('file'), function (req, res, next) {
