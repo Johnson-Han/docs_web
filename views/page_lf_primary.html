@@ -323,7 +323,7 @@
                                                 <small class="text-muted">
                                                     <i class="fa fa-clock-o"></i>&nbsp{{x.upload_date|limitTo:10}}</small>
                                                 <br>
-                                                <small class="text-muted">系统:&nbsp{{x.system}} </small>
+                                                <small class="text-muted">文件进度:&nbsp{{x.timeline_type}} &nbsp </small>
                                                 
                                             </p>
                                         </div>
@@ -332,7 +332,7 @@
                                             <hr>
                                             <div class="btn-group">
                                                 <a type="button" class="btn btn-block btn-social btn-dropbox" href="{{x.file_addr}}">
-                                                    <i class="fa fa-paperclip"></i>&nbsp附件&nbsp{{x.filename.slice(15,45)}}{{x.filename.length>30?'...':''}}
+                                                    <i class="fa fa-paperclip"></i>&nbsp附件&nbsp{{x.filename.slice(0,20)}}{{x.filename.length>20?'...':''}}
                                                 </a>
                                             </div>
                                          </div>
