@@ -66,9 +66,9 @@ router.post('/lf_primary_add', multer({ storage: storage3 }).single('file'), fun
 
 
   console.log(sql);
-  pg2.query(sql, function (result) { });
-  Wurl = '/lfcontact/' + req.body.name;
-  res.redirect(Wurl);
+  // pg2.query(sql, function (result) { });
+  // Wurl = '/lfcontact/' + req.body.name;
+  // res.redirect(Wurl);
 
 })
 
