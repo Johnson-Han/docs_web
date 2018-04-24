@@ -323,7 +323,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="/lf1_primary">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -801,8 +801,8 @@
               
       var app = angular.module('myApp', []);
       app.controller('myCtrl', function($scope, $http) {   
-      var myUrl = "http://10.10.2.29:3000/data/lf1?callback=JSON_CALLBACK";
-      var myUrl_input = "http://10.10.2.29:3000/data/input_file?callback=JSON_CALLBACK";
+      var myUrl = "http://127.0.0.1:3000/data/lf1?callback=JSON_CALLBACK";
+      var myUrl_input = "http://127.0.0.1:3000/data/input_file?callback=JSON_CALLBACK";
       $http.jsonp(myUrl_input).success(function(response){
         // $scope.input_file=response;
         var data = new Array();

@@ -324,7 +324,7 @@
               
       var app = angular.module('myApp', []);
       app.controller('myCtrl', function($scope, $http) {   
-      var myUrl = "http://10.10.2.29:3000/data/lf1?callback=JSON_CALLBACK";
+      var myUrl = "http://127.0.0.1:3000/data/lf1?callback=JSON_CALLBACK";
       $http.jsonp(myUrl).success(function(response) {
           
           var i=0;

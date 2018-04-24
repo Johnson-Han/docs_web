@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>TMSR Documents 技术通知单</title>
+    <title>TMSR Documents 初步设计文件</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -315,19 +315,24 @@
                                 <thead>
                                     <tr>
                                         <th>文件序号</th>
+                                        <th>系统名称</th>
                                         <th>文件名称</th>
-                                        <th>文件大小(MB)</th>
-                                        <th>签发时间</th>
+                                        <th>文件编码</th>
+                                        <th>文件作者</th>
+                                        <th>时间节点</th>
+                                        <th>文件版本</th>
+                                        <th>文件状态</th>
+
                                     </tr>
                                 </thead>
 
                             </table>
                             <!-- /.table-responsive -->
-                            <div class="well">
+                            <!-- <div class="well">
                                 <h4>信息描述</h4>
                                 <p>项目自初步设计批准之日起至通过竣工验收正式交付使用之日止，对已批准的初步设计文件、技术设计文件或施工图设计文件所进行的修改、完善、优化等活动,应以图纸或设计变更通知单的形式发出。</p>
                                 <a class="btn btn-default btn-lg btn-block" target="_blank" href="/">上传新的技术通知单</a>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -364,7 +369,7 @@
     <script>
         var app = angular.module('myApp', []);
             app.controller('myCtrl', function ($scope, $http) {
-                 var myUrl_note = "http://127.0.0.1:3000/data/lf1_note?callback=JSON_CALLBACK";
+                 var myUrl_note = "http://127.0.0.1:3000/data/lf1_primary?callback=JSON_CALLBACK";
                  var myUrl = "http://127.0.0.1:3000/data/lf1?callback=JSON_CALLBACK";
 
                  $http.jsonp(myUrl_note).success(function (response) {
@@ -372,8 +377,12 @@
                      var i = 0;
                      response.forEach(function (responseE) {
                          // console.log(response);
-
-                         data.push([i, responseE.name, responseE.size, responseE.time, responseE.path]);
+                         dead_line=responseE.dead_line;
+                         if(dead_line){
+                            dead_line=dead_line.slice(0,9);
+                         }
+                         
+                         data.push([responseE.index, responseE.system, responseE.file_name, responseE.file_encode,responseE.editor,dead_line,responseE.version,responseE.doc_status]);
                          i++;
                      })
                      $(document).ready(function () {
@@ -406,11 +415,12 @@
                                      // this case `data: 0`.
                                      "render": function (data, type, row) {
                                          // return data +' ('+ row[3]+')';
-                                         return '<a href="' + row[4] + '">' + data + '</a>';
-                                     },
+                                        //  return '<a href="' + row[4] + '">' + data + '</a>';
+                                         return '<a>' + data + '</a>';
+                                    },
                                      "targets": 1
-                                 },
-                                 { "visible": false, "targets": [4] }
+                                 }
+                                //  { "visible": false, "targets": [4] }
                              ]
 
                          });
