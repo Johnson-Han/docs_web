@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>初步设计文件:<%= file_name %></title>
+    <title><%= file_name %></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -425,7 +425,7 @@
                 
                 
 
-                var file_name = $(document).attr("file_name");
+                var file_name = $(document).attr("title");
                 var myUrl2 = 'http://10.10.2.29:3000/data/lf_primary_timeline/' + file_name + '?callback=JSON_CALLBACK'
                 $http.jsonp(myUrl2).success(function (response) {
                     // var i = 0;
