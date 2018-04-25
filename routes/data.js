@@ -112,6 +112,18 @@ router.get('/lf1_primary', function(req, res, next) {
 
 });
 
+router.get('/lf1_system_design/:system_name', function(req, res, next) {
+  process.env.TZ = "Asia/Shanghai";
+  sql ='select index,system, file_name, file_encode,editor,dead_line::date,version,doc_status from primary_design where system= \''+req.params.system_name +'\' order by index';
+  console.log(sql)
+  pg1.query(sql, function (result) {
+  res.jsonp(result.rows);
+  // console.log(result.rows); 
+
+  });
+
+});
+
 router.get('/input_file', function(req, res, next) {
   // fs.readdir("./public/files/TMSR-LF1工程/初步设计/01.设计输入参数",function(err,files){
     // console.log(files);

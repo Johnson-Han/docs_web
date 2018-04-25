@@ -182,4 +182,11 @@ router.post('/lf_reply_add', multer({ storage: storage1 }).single('file'), funct
 
 })
 
+router.get('/proto/:system_name', function (req, res, next) {
+  
+
+    res.render('lfsystemdesign',{title:req.params.system_name});
+
+});
+
 module.exports = router;
