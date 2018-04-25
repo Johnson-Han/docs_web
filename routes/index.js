@@ -71,7 +71,28 @@ router.post('/lf_primary_add', multer({ storage: storage3 }).single('file'), fun
   res.redirect(Wurl);
 
 })
+router.post('/lf_primary_reply_add', multer({ storage: storage3 }).single('file'), function (req, res, next) {
+  console.log(req.body);
+  console.log(req.file);
+  // console.log(process.cwd());
+  var upfdate = Date.now();
+  var newDate = new Date();
+  var localOffset = newDate.getTimezoneOffset() * 60000;
 
+  newDate.setTime(upfdate + localOffset);
+  var filepath = "/files/lf1/初步设计文件/" + req.file.filename;
+
+  var upftime = newDate.toISOString();
+
+  sql = 'insert into primary_timeline (subject,origin_name,filename,file_addr,upload_date,status,note,timeline_type) values (\'' + req.body.subject + '\',\'' + req.file.filename + '\',\'' + req.body.filename + '\',\'' + filepath + '\',\'' + upftime + '\',\'' + req.body.status + '\',\'' + req.body.note + '\',\'timeline-inverted\')';
+
+
+  console.log(sql);
+  pg2.query(sql, function (result) { });
+  Wurl = '/lf_primary_timeline/' + req.body.filename;
+  res.redirect(Wurl);
+
+})
 //初设文件时间轴的答复
 router.get('/add_primary_reply/:file_name', function (req, res, next) {
   // console.log(req.params)
