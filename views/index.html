@@ -880,8 +880,8 @@
            
           });
           $scope.systems = systems;
-          $scope.authorized=authorized;
-          $scope.submmitted=submmitted;
+          $scope.authorized=authorized?submitted:0;
+          $scope.submmitted=submmitted?submmitted:0;
           $scope.count=count;
           $scope.total_num=file_sum;
           $scope.total_sub=file_sub;
