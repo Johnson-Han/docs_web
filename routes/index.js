@@ -133,7 +133,7 @@ var storage1 = multer.diskStorage({
 
 //新建工作联系单
 // var upload = multer({ dest: '/Users/hanlf/gitHub/docs_web/public/files' })
-router.post('/lf_contact_add', multer({storage : storage1}).single('file'),function(req,res,next){
+router.post('/lf_contract_add', multer({storage : storage1}).single('file'),function(req,res,next){
     console.log(req.body);
     console.log(req.file);
   // console.log(process.cwd());
