@@ -308,7 +308,7 @@
                                             <label>发起</label>
                                             <input  ng-change="changeKeyValue()"  class="form-control" ng-model="search" placeholder="发起联系单的部门/系统" required name="contact_from" id="contact_from" data-validation-required-message="主体名称">
                                             <div ng-show='showV'>
-                                                <select  ng-value='from_v' ng-click="changeV()" ng-model='fuzzyV' ng-init="fuzzyV=system_scope[0]" ng-options='x.systems for x in system_scope | fuzzy: search'>
+                                                <select  ng-value='from_v' ng-click="changeV()" ng-model='fuzzyV' ng-init="fuzzyV = system_scope[0].systems" ng-options='x.systems for x in system_scope | fuzzy: search'>
                                                 
                                                     <!-- <option  ng-repeat="x in system_scope | fuzzy: search">{{ x.systems }}</option>  -->
                                                  </select>
@@ -319,7 +319,7 @@
                                             <label>发往</label>
                                             <input class="form-control" ng-change="changeKeyValue2()" ng-model='searchM' placeholder="接受联系单的部门/系统" required name="contact_to" id="contact_to" data-validation-required-message="主体名称">
                                             <div ng-show='showM'>
-                                                    <select  ng-value='from_M' ng-click="changeM()" ng-model='fuzzyM' ng-init="fuzzyM=system_scope[0]" ng-options='x.systems for x in system_scope | fuzzy: searchM'>
+                                                    <select  ng-value='from_M' ng-click="changeM()" ng-model='fuzzyM' ng-init="fuzzyM = system_scope[0].systems" ng-options='x.systems for x in system_scope | fuzzy: searchM'>
                                                     
                                                         <!-- <option  ng-repeat="x in system_scope | fuzzy: search">{{ x.systems }}</option>  -->
                                                      </select>
