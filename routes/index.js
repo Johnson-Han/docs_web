@@ -146,7 +146,7 @@ router.post('/lf_contract_add', multer({storage : storage1}).single('file'),func
     
     var upftime = newDate.toISOString();
     
-    sql='insert into param_requirement (subject,contact_from,contact_to,file_addr,name,re_sign_date,filename,note) values (\''+req.body.name+'\',\''+req.body.contact_from+'\',\''+req.body.contact_to+'\',\''+filepath+'\',\''+req.body.name+'\',\''+upftime+'\',\''+req.file.filename+'\',\''+req.body.note+'\')';
+    sql='insert into param_requirement (subject,contact_from,contact_to,file_addr,name,re_sign_date,filename,note) values (\''+req.body.subject+'\',\''+req.body.contact_from+'\',\''+req.body.contact_to+'\',\''+filepath+'\',\''+req.body.name+'\',\''+upftime+'\',\''+req.file.filename+'\',\''+req.body.note+'\')';
 
 
     console.log(sql);
