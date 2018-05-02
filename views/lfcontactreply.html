@@ -311,7 +311,7 @@
                                             <label>系统</label>
                                             <input ng-change="changeKeyValue()"  class="form-control" ng-model="search" placeholder="填写回复的部门/系统" required name="reply_from" id="reply_from" data-validation-required-message="主体名称">
                                             <div ng-show='showV'>
-                                                    <select  ng-value='from_v' ng-click="changeV()" ng-model='fuzzyV' ng-init="fuzzyV = system_scope[0].systems" ng-options='x.systems for x in system_scope | fuzzy: search '>
+                                                    <select  ng-value='from_v' ng-click="changeV()" ng-model='fuzzyV' ng-init="fuzzyV = system_scope[2]" ng-options='x.systems for x in system_scope | fuzzy: search '>
                                                     
                                                         <!-- <option  ng-repeat="x in system_scope | fuzzy: search">{{ x.systems }}</option>  -->
                                                      </select>
